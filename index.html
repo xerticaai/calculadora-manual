@@ -7,481 +7,579 @@
     
     <!-- Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts ATUALIZADAS (Poppins e Roboto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Material Symbols --><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <style>
-        /* Estilos personalizados (da home) */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #FFFFFF; /* << ALTERADO */
-            /* Imagens de fundo removidas */
-            color: #393232; 
+        /* Variáveis de cor ATUALIZADAS para o Dark Mode */
+        :root {
+            --brand-primary: #00BEFF; /* Primary 50 */
+            --brand-accent: #C0FF7D; /* Green 50 (novo accent) */
+            --text-strong: #FFFFFF; /* Texto forte (branco) */
+            --text-muted: #94a3b8; /* Texto suave (slate-400) */
+            --bg-page: #1E293B; /* Fundo do card (slate-800) */
+            --bg-soft: rgba(51, 65, 85, 0.5); /* Fundo suave (slate-700/50) */
+            --bg-dark: #0F172A;
+            --stroke: rgba(51, 65, 85, 0.5); /* Borda (slate-700/50) */
+            
+            /* Fontes ATUALIZADAS */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Roboto', sans-serif;
         }
+
+        /* Estilos de base (Dark Mode) */
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark); /* Fallback */
+            background-image: url('https://i.imgur.com/dULOC88.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-muted);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Títulos ATUALIZADOS (sem uppercase) */
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Mono', monospace;
-            color: #1E1E1E; 
-            text-transform: uppercase; /* << ADICIONADO */
+            font-family: var(--font-heading);
+            color: var(--text-strong); 
+            font-weight: 700;
+            /* text-transform: uppercase; << REMOVIDO */
         }
         .gradient-text {
-            background: linear-gradient(90deg, #FF00F3, #00C0FF); 
+            background: linear-gradient(90deg, var(--brand-accent), var(--brand-primary)); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
-        /* Estilos específicos do Manual */
+        /* Estilos específicos do Manual (Dark Mode) */
         main p, main li {
-            color: #393232;
+            color: var(--text-muted);
             line-height: 1.7;
         }
 
         main strong {
-            color: #1E1E1E;
+            color: var(--text-strong);
         }
         
         main a:not(.btn-nav) {
-            color: #007BFF; /* Tom de azul do gradiente */
+            color: var(--brand-primary); /* Tom de azul */
             text-decoration: underline;
             font-weight: 500;
         }
         main a:hover:not(.btn-nav) {
-            color: #FF00F3; /* Tom de rosa do gradiente */
+            color: var(--brand-accent); /* Tom de verde */
         }
 
-        main ul {
-            list-style-type: disc;
-            padding-left: 20px;
+        main ul, main ol {
+            list-style-position: inside;
+            padding-left: 0; /* Resetado pois o 'inside' cuida disso */
             margin-bottom: 1.5rem;
         }
-        
-        main ol {
-            list-style-type: decimal;
-            padding-left: 20px;
-            margin-bottom: 1.5rem;
-        }
+        main ul { list-style-type: disc; }
+        main ol { list-style-type: decimal; }
 
         main li {
             margin-bottom: 0.5rem;
+            margin-left: 20px; /* Adiciona indentação */
+        }
+        main li ul, main li ol {
+            margin-top: 0.5rem; /* Espaço para sub-listas */
         }
 
         /* Ajuste para links de âncora com nav pegajoso */
         section[id] {
-            scroll-margin-top: 140px; /* << AJUSTADO */
+            scroll-margin-top: 140px; /* Ajuste conforme altura do nav mobile */
         }
+        
+        /* Estilos para as caixas de conteúdo (dark mode) */
+        .content-box {
+            background-color: var(--bg-page);
+            border-radius: 0.75rem; /* 12px */
+            padding: 1rem 1.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--stroke);
+        }
+        
+        .content-box-highlight-red {
+            border-left: 4px solid #F87171; /* red-400 */
+        }
+        .content-box-highlight-blue {
+            border-left: 4px solid #60A5FA; /* blue-400 */
+        }
+        .content-box-highlight-green {
+            border-left: 4px solid var(--brand-accent); /* green-300 */
+        }
+
+        /* Tabela (dark mode) */
+        .table-wrapper {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-radius: 0.75rem; /* 12px */
+            overflow: hidden;
+            border: 1px solid var(--stroke);
+        }
+        .table-header {
+            background-color: #334155; /* slate-700 */
+        }
+        .table-header th {
+            padding: 1rem;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-strong);
+        }
+        .table-body {
+            background-color: var(--bg-page);
+            divide-y: 1px;
+            divide-color: var(--stroke);
+        }
+        .table-body tr {
+            border-top-width: 1px;
+            border-color: var(--stroke);
+        }
+        .table-body td {
+            padding: 1rem;
+            vertical-align: top;
+        }
+        
+        /* Bloco de Código (dark mode) */
+        .code-block {
+            background-color: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 0.5rem; /* 8px */
+            font-family: 'Space Mono', monospace;
+            font-size: 0.875rem; /* text-sm */
+            color: var(--text-muted);
+            /* text-transform: uppercase; */ /* Removido para melhor leitura */
+            border: 1px solid var(--stroke);
+        }
+        .code-block li {
+            margin: 0;
+            padding: 2px 0;
+            list-style: none;
+        }
+        /* Classe para destacar código */
+        main code {
+            background-color: rgba(0,0,0,0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+
     </style>
 </head>
-<body class="flex flex-col min-h-screen antialiased">
+<body class="flex flex-col min-h-screen text-slate-300"> <!-- Cores base dark mode -->
 
-    <header class="py-4 md:py-6 bg-gradient-to-r from-[#FF00F3] to-[#00C0FF] shadow-lg"> <!-- << CLASSES ALTERADAS --><div class="container mx-auto max-w-5xl px-4 flex justify-center items-center">
-            <a href="home_calculadoras.html"> <!-- Link de volta para a home --><!-- Logo alterado para a versão branca para melhor contraste --><img src="https://storage.googleapis.com/etp-bucket/Logos%20Xertica.ai%20%28.png%29/xertica.ai/Copy%20of%20Logo_XERTICA_white.png" alt="Logo Xertica.ai" class="h-8">
+    <!-- HEADER ATUALIZADO (Dark mode, logo branco) -->
+    <header class="py-4 md:py-6">
+        <div class="container mx-auto max-w-5xl px-4 flex justify-center items-center">
+            <a href="https://xerticaai.github.io/calculadora-hub/" class="logo"> <!-- Link de volta para a home -->
+                <img src="https://storage.googleapis.com/etp-bucket/Logos%20Xertica.ai%20%28.png%29/xertica.ai/Copy%20of%20Logo_XERTICA_white.png" alt="Logo Xertica.ai" class="h-8">
             </a>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto max-w-6xl px-4 py-8 md:py-12"> <!-- << CONTAINER AUMENTADO --><!-- Cabeçalho do Artigo --><div class="mb-12">
+    <main class="flex-grow container mx-auto max-w-6xl px-4 py-8 md:py-12">
+        <!-- Cabeçalho do Artigo -->
+        <div class="mb-12">
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-2">Manual de Uso</h1>
-            <p class="text-center text-xl text-gray-700 mb-4">Calculadoras de Impacto e ROI Xertica.ai</p>
-            <p class="text-center text-sm text-gray-500">Atualizado em: 23/10/2025</p>
+            <p class="text-center text-xl text-slate-400 mb-4">Calculadoras de Impacto e ROI Xertica.ai</p>
+            <p class="text-center text-sm text-slate-500">Atualizado em: 13/11/2025</p>
         </div>
 
-        <!-- Menu de Navegação (Mobile/Tablet) --><nav id="manual-nav-mobile" class="lg:hidden sticky top-0 z-30 transition-all duration-300 -mx-4 mb-8">
-             <!-- Este div é o container do menu --><div class="bg-white/90 backdrop-blur-lg shadow-md rounded-b-xl max-w-5xl mx-auto px-6 py-4">
-                <h3 class="text-lg font-bold mb-3 text-center md:text-left">Menu de Navegação</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 text-sm">
-                    <a href="#secao1" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">1. Objetivo</a>
-                    <a href="#secao2" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">2. Vantagem</a>
-                    <a href="#secao3" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">3. Qual Usar?</a>
-                    <a href="#secao4" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">4. Foco (JTBD)</a>
-                    <a href="#secao5" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">5. A Lógica</a>
-                    <a href="#secao6" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">6. Coleta de Dados</a>
-                    <a href="#secao7" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">7. Análise Crítica</a>
-                    <a href="#secao8" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">8. Apresentação</a>
-                    <a href="#secao9" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">9. Disclaimers</a>
-                    <a href="#secao10" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">10. Salesforce</a>
-                    <a href="#secao11" class="btn-nav font-medium text-gray-700 hover:text-pink-500 transition-colors">11. Suporte</a>
-                </div>
-            </div>
+        <!-- Menu de Navegação (Mobile/Tablet) ATUALIZADO (Dark Mode) -->
+        <nav id="manual-nav-mobile" class="lg:hidden sticky top-0 z-30 transition-all duration-300 -mx-4 mb-8">
+             <div class="bg-slate-800/90 backdrop-blur-lg shadow-md rounded-b-xl max-w-5xl mx-auto px-6 py-4 border-x border-b border-slate-700/50">
+                 <h3 class="text-lg font-bold mb-3 text-center md:text-left text-white">Menu de Navegação</h3>
+                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 text-sm">
+                     <a href="#secao1" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">1. Objetivo</a>
+                     <a href="#secao2" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">2. Vantagem</a>
+                     <a href="#secao3" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">3. Qual Usar?</a>
+                     <a href="#secao4" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">4. Foco (JTBD)</a>
+                     <a href="#secao5" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">5. A Lógica</a>
+                     <a href="#secao6" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">6. Coleta de Dados</a>
+                     <a href="#secao7" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">7. Análise Crítica</a>
+                     <a href="#secao8" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">8. Apresentação</a>
+                     <a href="#secao9" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">9. Disclaimers</a>
+                     <a href="#secao10" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">10. Salesforce</a>
+                     <a href="#secao11" class="btn-nav font-medium text-slate-300 hover:text-green-300 transition-colors">11. Suporte</a>
+                 </div>
+             </div>
         </nav>
 
 
-        <!-- Container Principal (Menu + Conteúdo) --><div class="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12">
+        <!-- Container Principal (Menu + Conteúdo) -->
+        <div class="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12">
             
-            <!-- Menu de Navegação Lateral (Desktop) --><nav id="manual-nav-desktop" class="hidden lg:block sticky top-8 self-start h-[calc(100vh-4rem)] overflow-auto pr-4">
-                 <h3 class="text-lg font-bold mb-4">Menu de Navegação</h3>
-                 <div class="flex flex-col space-y-2 border-l-2 border-gray-200">
-                    <a href="#secao1" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">1. Objetivo</a>
-                    <a href="#secao2" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">2. Vantagem</a>
-                    <a href="#secao3" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">3. Qual Usar?</a>
-                    <a href="#secao4" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">4. Foco (JTBD)</a>
-                    <a href="#secao5" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">5. A Lógica</a>
-                    <a href="#secao6" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">6. Coleta de Dados</a>
-                    <a href="#secao7" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">7. Análise Crítica</a>
-                    <a href="#secao8" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">8. Apresentação</a>
-                    <a href="#secao9" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">9. Disclaimers</a>
-                    <a href="#secao10" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">10. Salesforce</a>
-                    <a href="#secao11" class="btn-nav font-medium text-gray-700 hover:text-pink-500 border-l-2 border-transparent hover:border-pink-500 -ml-0.5 pl-4 py-1 transition-all">11. Suporte</a>
+            <!-- Menu de Navegação Lateral (Desktop) ATUALIZADO (Dark Mode) -->
+            <nav id="manual-nav-desktop" class="hidden lg:block sticky top-8 self-start h-[calc(100vh-4rem)] overflow-auto pr-4">
+                 <h3 class="text-lg font-bold mb-4 text-white">Menu de Navegação</h3>
+                 <div class="flex flex-col space-y-2 border-l-2" style="border-color: var(--stroke);">
+                     <a href="#secao1" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">1. Objetivo</a>
+                     <a href="#secao2" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">2. Vantagem</a>
+                     <a href="#secao3" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">3. Qual Usar?</a>
+                     <a href="#secao4" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">4. Foco (JTBD)</a>
+                     <a href="#secao5" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">5. A Lógica</a>
+                     <a href="#secao6" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">6. Coleta de Dados</a>
+                     <a href="#secao7" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">7. Análise Crítica</a>
+                     <a href="#secao8" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">8. Apresentação</a>
+                     <a href="#secao9" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">9. Disclaimers</a>
+                     <a href="#secao10" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">10. Salesforce</a>
+                     <a href="#secao11" class="btn-nav font-medium text-slate-300 hover:text-green-300 border-l-2 border-transparent hover:border-green-300 -ml-0.5 pl-4 py-1 transition-all">11. Suporte</a>
                  </div>
             </nav>
 
-            <!-- Conteúdo do Manual --><article class="">
+            <!-- Conteúdo do Manual (TEXTOS ATUALIZADOS E DETALHADOS) -->
+            <article class="prose prose-lg max-w-none">
 
-            <!-- Seção 1 --><section id="secao1">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-6 gradient-text">1. Objetivo deste Manual</h2>
-                <p class="mb-4">Capacitar você, membro da equipe comercial da Xertica.ai, a utilizar estrategicamente as Calculadoras de Impacto (Horas) e ROI (Financeiro) como ferramentas consultivas poderosas. O objetivo final é transformar suas conversas com clientes em contratos fechados, quantificando os benefícios da nossa Inteligência Artificial em números concretos (horas economizadas e retorno financeiro) que ressoam diretamente com as dores e objetivos do cliente.</p>
-            </section>
+                <!-- Seção 1 -->
+                <section id="secao1">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-6 gradient-text">1. Objetivo deste Manual</h2>
+                    <p class="mb-4">Este manual é seu guia tático para transformar conversas de vendas em contratos fechados. O objetivo é capacitar você, consultor da Xertica.ai, a usar as Calculadoras de Impacto (Horas) e ROI (Financeiro) como ferramentas consultivas de alto impacto.</p>
+                    <p class="mb-4">Vamos parar de vender *features* e começar a provar *valor*. Ao final deste guia, você será capaz de quantificar os benefícios da nossa Inteligência Artificial em números que ressoam com a dor do cliente (horas de sobrecarga, custos operacionais) e com os objetivos do decisor (economia, eficiência, retorno financeiro).</p>
+                </section>
 
-            <!-- Seção 2 --><section id="secao2">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">2. Por Que Usar as Calculadoras? A Vantagem Estratégica</h2>
-                <p class="mb-4">Em um mercado competitivo, precisamos ir além de apresentar functionalities. Precisamos provar o valor da nossa solução. As calculadoras são suas aliadas para:</p>
-                <ul>
-                    <li><strong>Quantificar o Valor:</strong> Traduzir benefícios abstratos como "eficiência" e "agilidade" em métricas que o cliente entende e valoriza:
-                        <ul class="mt-2">
-                            <li>Horas economizadas: Quantifica o tempo liberado da equipe.</li>
-                            <li>Aumento de capacidade: Mostra o quanto a mais a equipe pode produzir.</li>
-                            <li>Economia financeira (R$): Demonstra o impacto direto no orçamento.</li>
-                            <li>ROI (%): Prova o retorno sobre o investimento.</li>
-                            <li>Payback (meses): Mostra em quanto tempo o investimento se paga.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Alinhar com a Dor do Cliente:</strong> Conectar nossa solução diretamente aos desafios operacionais (lentidão, gargalos, sobrecarga) e financeiros (custos elevados, necessidade de otimização orçamentária) que o cliente enfrenta no dia a dia.</li>
-                    <li><strong>Acelerar o Ciclo de Vendas:</strong>
-                        <ul class="mt-2">
-                            <li><strong>Criar Senso de Urgência:</strong> Ao mostrar o "custo da inação" (quantas horas e dinheiro estão sendo perdidos agora), você incentiva uma decisão mais rápida.</li>
-                            <li><strong>Fornecer Argumentos Racionais:</strong> Os números dão suporte à decisão, facilitando a aprovação interna, especialmente com stakeholders financeiros.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Diferenciação Competitiva:</strong> Apresentar uma análise baseada em dados demonstra profissionalismo, conhecimento do negócio do cliente e uma abordagem consultiva, não apenas transacional.</li>
-                </ul>
-                <p><strong>Objetivo Final para Você:</strong> Aumentar sua taxa de conversão, reduzir o tempo de fechamento dos negócios e fortalecer seu relacionamento com o cliente, posicionando-se como um parceiro estratégico.</p>
-            </section>
+                <!-- Seção 2 -->
+                <section id="secao2">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">2. Por Que Usar as Calculadoras? A Vantagem Estratégica</span>
+                    </h2>
+                    <p class="mb-4">No mercado atual, o cliente não quer saber "o que" sua IA faz; ele quer saber "quanto" ela economiza. As calculadoras são sua ponte para essa resposta.</p>
+                    <ul>
+                        <li><strong>Quantificar o Valor:</strong> Elas traduzem benefícios abstratos como "eficiência" em métricas que o cliente entende e valoriza:
+                            <ul class="mt-2">
+                                <li><strong>Horas Economizadas:</strong> O número mais poderoso para o gerente operacional. Quantifica o tempo liberado da equipe.</li>
+                                <li><strong>Economia Líquida (R$):</strong> O número crucial para o CFO. Demonstra o impacto direto no orçamento, já descontando o nosso custo.</li>
+                                <li><strong>ROI (%) e Payback (Meses):</strong> Os números que justificam a decisão. Provam que não é um "custo", mas um "investimento" que se paga.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Alinhar com a Dor do Cliente:</strong> Você conecta nossa solução diretamente ao problema. A "sobrecarga da equipe" deixa de ser um sentimento e vira um custo de R$ X por ano. Você tangibiliza o "custo da inação".</li>
+                        <li><strong>Acelerar o Ciclo de Vendas:</strong>
+                            <ul class="mt-2">
+                                <li><strong>Criar Senso de Urgência:</strong> Ao mostrar o "custo da inação" (quantas horas e dinheiro estão sendo perdidos *agora*), você incentiva uma decisão mais rápida.</li>
+                                <li><strong>Neutralizar Objeções de Preço:</strong> Um investimento de R$ 50k parece alto até você provar que ele gera R$ 150k de economia líquida. A calculadora transforma a discussão de "preço" para "lucro".</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diferenciação Competitiva:</strong> Você deixa de ser um "vendedor" e se torna um "consultor financeiro-operacional". Isso gera confiança e nos posiciona como parceiros estratégicos.</li>
+                    </ul>
+                </section>
 
-            <!-- Seção 3 --><section id="secao3">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">3. Qual Calculadora Usar e Quando? O Timing é Crucial</h2>
-                <p class="mb-6">Temos duas ferramentas distintas, cada uma projetada para um momento específico da conversa de vendas:</p>
+                <!-- Seção 3 -->
+                <section id="secao3">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">3. Qual Calculadora Usar e Quando? O Timing é Crucial</span>
+                    </h2>
+                    <p class="mb-6">O sucesso não está em *usar* a calculadora, mas em usá-la no *momento certo* e para a *persona certa*.</p>
 
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">3.1. Calculadora de Impacto (Economia de Horas)</h3>
-                <ul>
-                    <li><strong>Foco Principal:</strong> Quantificar o tempo economizado e o ganho de capacidade operacional. Ela responde à pergunta: "Quanto tempo minha equipe pode ganhar e o que podemos fazer com esse tempo extra?".</li>
-                    <li><strong>Quando Usar:</strong> Fase de Avaliação/Diagnóstico da venda.</li>
-                    <li>Ideal logo após as primeiras conversas, quando você já identificou as dores e processos manuais do cliente.</li>
-                    <li>Use para gerar interesse, mostrar o potencial de otimização e validar que a IA pode, de fato, resolver um problema significativo de tempo e produtividade.</li>
-                    <li>Perfeita para reuniões de discovery ou apresentação inicial de diagnóstico.</li>
-                    <li><strong>Resultado Gerado:</strong> Um relatório visual (arquivo .PNG) focado em:
-                        <ul class="mt-2">
-                            <li>Horas Economizadas (Mês/Ano)</li>
-                            <li>Servidores Equivalentes Realocados (capacidade humana liberada)</li>
-                            <li>Redução Percentual no Tempo de Execução</li>
-                            <li>Nova Capacidade Produtiva (quantas tarefas a mais poderiam ser feitas)</li>
-                        </ul>
-                    </li>
-                    <li><strong>Links:</strong>
-                        <ul class="mt-2">
-                            <li><a href="https://xerticaai.github.io/calculadora-horas-justica/" target="_blank">Justiça - Horas</a></li>
-                            <li><a href="https://xerticaai.github.io/calculadora-horas-governo/" target="_blank">Governo - Horas</a></li>
-                            <li><a href="https://xerticaai.github.io/calculadora-horas-saude/" target="_blank">Saúde - Horas</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">3.1. Calculadora de Impacto (Economia de Horas)</h3>
+                    <ul>
+                        <li><strong>Persona Alvo:</strong> Gestor Operacional, Coordenador da Área, Gerente de TI.</li>
+                        <li><strong>Foco Principal:</strong> A dor operacional. Responde: "Minha equipe está sobrecarregada. Quanto tempo vamos ganhar de volta?".</li>
+                        <li><strong>Quando Usar:</strong> Fase de **Diagnóstico** (2ª ou 3ª reunião). Use após o discovery, quando você já identificou os processos manuais e a dor de gargalo.</li>
+                        <li><strong>Resultado Chave:</strong> "Com base no seu volume, podemos liberar [X] mil horas por ano, o que equivale a [N] profissionais que hoje estão em tarefas manuais e poderiam estar em [atividade estratégica]."</li>
+                        <li><strong>Links:</strong>
+                            <ul class="mt-2">
+                                <li><a href="https://xerticaai.github.io/calculadora-horas-justica/" target="_blank">Justiça - Horas</a></li>
+                                <li><a href="https://xerticaai.github.io/calculadora-horas-governo/" target="_blank">Governo - Horas</a></li>
+                                <li><a href="https://xerticaai.github.io/calculadora-horas-saude/" target="_blank">Saúde - Horas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">3.2. Calculadora de ROI (Retorno Financeiro)</h3>
-                <ul>
-                    <li><strong>Foco Principal:  Quantificar o retorno financeiro do investimento na solução Xertica.ai. Ela responde à pergunta: "Esse investimento vale a pena financeiramente? Em quanto tempo ele se paga?".</li>
-                    <li><strong>Quando Usar:  Fase de Proposta Comercial (envio ou apresentação).</li>
-                    <li>Ideal para anexar à proposta comercial formal ou para apresentar em uma reunião de fechamento/decisão.</li>
-                    <li>Use quando o cliente já entendeu o valor operacional (ganho de tempo) e precisa justificar o investimento financeiramente para si mesmo ou para outros decisores (financeiro, diretoria).</li>
-                    <li><strong>Resultado Gerado:  Um relatório financeiro (arquivo .PNG) mais detalhado, incluindo:
-                        <ul class="mt-2">
-                            <li>Economia Líquida (Mensal/Anual) - Já descontando o investimento.</li>
-                            <li>Retorno Sobre o Investimento (ROI) no primeiro ano.</li>
-                            <li>Payback (em meses) - Tempo para o investimento se pagar.</li>
-                            <li>Análise Financeira Comparativa (Custo Atual vs. Novo Custo com IA).</li>
-                        </ul>
-                    </li>
-                    <li><strong>Links:</strong>
-                        <ul class="mt-2">
-                            <li><a href="https://xerticaai.github.io/calculadora-roi-justica/" target="_blank">Justiça - ROI</a></li>
-                            <li><a href="https://xerticaai.github.io/calculadora-roi-governo/" target="_blank">Governo - ROI</a></li>
-                            <li><a href="https://xerticaai.github.io/calculadora-roi-saude/" target="_blank">Saúde - ROI</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">3.2. Calculadora de ROI (Retorno Financeiro)</h3>
+                    <ul>
+                        <li><strong>Persona Alvo:</strong> Decisor Financeiro (CFO, Diretor, Secretário) ou o Gestor Operacional que precisa de "bala na agulha" para aprovar o orçamento.</li>
+                        <li><strong>Foco Principal:</strong> A dor financeira. Responde: "Isso é caro? Em quanto tempo esse investimento se paga?".</li>
+                        <li><strong>Quando Usar:</strong> Fase de **Proposta Comercial**. Use para justificar o investimento e defender o preço.</li>
+                        <li><strong>Resultado Chave:</strong> "O investimento de R$ [Valor da Proposta] não é um custo. Ele gera um ROI de [X]% e se paga em [Z] meses. No final do primeiro ano, sua economia líquida (já descontado nosso valor) será de R$ [Y]."</li>
+                        <li><strong>Links:</strong>
+                            <ul class="mt-2">
+                                <li><a href="https://xerticaai.github.io/calculadora-roi-justica/" target="_blank">Justiça - ROI</a></li>
+                                <li><a href="https://xerticaai.github.io/calculadora-roi-governo/" target="_blank">Governo - ROI</a></li>
+                                <li><a href="https://xerticaai.github.io/calculadora-roi-saude/" target="_blank">Saúde - ROI</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                <div class="my-6 p-4 rounded-xl border-l-4 border-pink-500 bg-white shadow-md">
-                    <h4 class="text-lg font-bold mb-2 font-mono">REGRA DE OURO</h4>
-                    <p class="text-gray-700">Não inverta a ordem! Comece validando o impacto no tempo e na operação (Calculadora de Horas). Somente depois, quando o valor operacional estiver claro, traduza isso para dinheiro (Calculadora de ROI). Tentar calcular o ROI muito cedo, sem que o cliente perceba o ganho de eficiência, pode parecer prematuro ou focado apenas no preço.</p>
-                </div>
-            </section>
+                    <div class="my-6 p-4 rounded-xl content-box content-box-highlight-green">
+                        <h4 class="text-lg font-bold mb-2">Fluxo da Conversa Vencedora</h4>
+                        <ol style="list-style-type: decimal; padding-left: 0; margin-left: 20px;">
+                            <li>**Descoberta (Reunião 1):** Identifique a dor (JTBD). "Onde está o gargalo? Onde o time gasta mais tempo manual?"</li>
+                            <li>**Diagnóstico (Reunião 2):** Use a **Calculadora de Horas** com o gestor da área para validar o tamanho do problema. "A dor que você sente equivale a X mil horas/ano."</li>
+                            <li>**Proposta (Reunião 3):** Apresente a solução e use a **Calculadora de ROI** com o decisor financeiro. "A solução para aquele problema de X mil horas custa Y, se paga em Z meses e gera um lucro de W."</li>
+                        </ol>
+                    </div>
+                </section>
+                
+                <!-- Seção 4 ATUALIZADA (foco em páginas) -->
+                <section id="secao4">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">4. Foco Estratégico: Jobs To Be Done (JTBD) - A Dor do Cliente</span>
+                    </h2>
+                    <div class="my-6 p-4 rounded-xl content-box content-box-highlight-blue">
+                        <h4 class="text-lg font-bold mb-2">Ponto Crucial</h4>
+                        <p>Fale a língua do cliente. Não vendemos "IA Generativa"; vendemos "tempo de volta". Não vendemos "Software de Análise"; vendemos "redução de risco em contratos".</p>
+                    </div>
+
+                    <div class="table-wrapper my-8">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="table-header">
+                                    <tr>
+                                        <th class="p-4">Em vez de perguntar (Foco no Produto):</th>
+                                        <th class="p-4">Pergunte (Foco na Tarefa/Dor - JTBD):</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-body">
+                                    <tr>
+                                        <td class="p-4 align-top">"Você quer um assistente virtual?"</td>
+                                        <td class="p-4 align-top">"Qual o volume mensal de <strong>atendimentos</strong> para agendamentos e dúvidas que sua equipe realiza?"</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 align-top">"Nossa IA pode anonimizar seus dados."</td>
+                                        <td class="p-4 align-top">"Quantas <strong>páginas</strong> precisam ser anonimizadas mensalmente para LGPD ou pesquisa?"</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 align-top">"Quer transcrever vídeos automaticamente?"</td>
+                                        <td class="p-4 align-top">"Quantas <strong>horas</strong> de vídeo precisam ser transcritas por mês?"</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 align-top">"Nossa IA elabora peças jurídicas."</td>
+                                        <td class="p-4 align-top">"Qual o <strong>total de páginas</strong> (petições, despachos, laudos) que sua equipe elabora mensalmente?"</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <p>Ao focar na métrica da tarefa (atendimentos, páginas, horas), você ancora a conversa na operação do cliente, e não na nossa tecnologia.</p>
+                </section>
+
+                <!-- Seção 5 ATUALIZADA (Premissas Editáveis) -->
+                <section id="secao5">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">5. A Lógica por Trás dos Números (ATUALIZADO)</span>
+                    </h2>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">5.1. A GRANDE MUDANÇA: Premissas de Cálculo Editáveis</h3>
+                    <div class="my-6 p-4 rounded-xl content-box content-box-highlight-blue">
+                        <h4 class="text-lg font-bold mb-2">Seu Superpoder de Vendas</h4>
+                        <p>As premissas de tempo (Manual vs. IA), dias úteis e horas de trabalho agora são **campos editáveis** dentro de cada calculadora. Isso é uma virada de jogo.</p>
+                        <ul class="mt-4">
+                            <li><strong>Gera Confiança:</strong> Você pode ajustar os números na hora com o cliente.</li>
+                            <li><strong>Quebra Objeções:</strong> Se o cliente disser "Meu time não leva 15 minutos, leva 10", você responde: "Perfeito, vamos usar 10" e recalcula instantaneamente.</li>
+                            <li><strong>Personaliza 100%:</strong> O resultado final é baseado nos números *do cliente*, não em uma estimativa genérica.</li>
+                        </ul>
+                    </div>
+                    <p class="mb-4">Use os valores padrão (que são baseados em nossas médias de mercado) como ponto de partida, mas sempre valide e ajuste com o cliente para máximo impacto.</p>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-8">5.2. Cálculo de Horas (O que a Calculadora de Horas faz)</h3>
+                    <ul class="code-block">
+                        <li><strong>Horas Economizadas (Mês):</strong> (Tempo Manual Total - Tempo com IA Total) / 60</li>
+                        <li><strong>Profissionais Realocados:</strong> Horas Economizadas (Ano) / (Horas/Dia * Dias Úteis/Ano)</li>
+                    </ul>
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-8">5.3. Cálculo de ROI (O que a Calculadora de ROI faz)</h3>
+                    <ul class="code-block">
+                        <li><strong>Custo da Hora:</strong> Custo Mensal Colaborador / ((Dias Úteis * Horas/Dia) / 12)</li>
+                        <li><strong>Economia de Mão de Obra (Anual):</strong> Horas Economizadas (Mês) * Custo da Hora * 12</li>
+                        <li><strong>Economia Bruta Total (Anual):</strong> Economia Mão de Obra + Custo Infra Atual</li>
+                        <li><strong>Investimento Total (Anual):</strong> Investimento IP + Serviços + Consumo GCP</li>
+                        <li><strong>Economia Líquida (1º Ano):</strong> Economia Bruta Total - Investimento Total</li>
+                        <li><strong>ROI (%):</strong> (Economia Líquida / Investimento Total) * 100</li>
+                        <li><strong>Payback (Meses):</strong> Investimento Total / (Economia Bruta Total / 12)</li>
+                    </ul>
+                </section>
+
+                <!-- Seção 6 ATUALIZADA (Novos campos de ROI) -->
+                <section id="secao6">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">6. Playbook de Coleta de Dados</span>
+                    </h2>
+                    <p class="mb-6">Você precisa de 3 categorias de dados. Use este playbook para coletá-los.</p>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">A. Dados de Volume (Obrigatório para todas)</h3>
+                    <p class="mb-4">Pergunte ao gestor da área (Foco na Tarefa):</p>
+                    <ul>
+                        <li>"Qual o volume total de <strong>atendimentos</strong> ao cidadão/paciente por mês?"</li>
+                        <li>"Quantas <strong>horas de vídeo/áudio</strong> sua equipe precisa transcrever mensalmente?"</li>
+                        <li>"Quantas <strong>páginas</strong> (de petições, laudos, contratos) vocês elaboram por mês?"</li>
+                        <li>"Quantas <strong>páginas</strong> (de editais, processos) vocês precisam analisar para extrair dados?"</li>
+                        <li>"Quantas <strong>páginas</strong> passam por anonimização manual (para LGPD) por mês?"</li>
+                    </ul>
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">B. Dados de Premissas (Valide ou Edite)</h3>
+                    <p class="mb-4">Pergunte ao gestor da área (Foco na Dor):</p>
+                    <ul>
+                        <li>"Hoje, quanto tempo em média (minutos) leva para sua equipe fazer [Tarefa X] manualmente? Nossa média é [Y]. Faz sentido para vocês?"</li>
+                        <li>"Para fins de cálculo, podemos usar as constantes de [252] dias úteis/ano e [8] horas/dia?"</li>
+                    </ul>
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">C. Dados Financeiros (Apenas Calculadora de ROI)</h3>
+                    <p class="mb-4">Pergunte ao decisor financeiro ou gestor sênior (Foco no Custo):</p>
+                    <ul class="mb-4">
+                        <li><strong>Para o Custo Atual:</strong>
+                            <ul class="mt-2">
+                                <li><strong>(Script) Custo de Mão de Obra:</strong> "Para que nosso cálculo de ROI seja o mais preciso possível, qual é o custo médio mensal de um colaborador que realiza essas tarefas, já incluindo encargos e benefícios? Podemos usar uma média ou faixa."</li>
+                                <li><strong>Custo de Infra Atual (Opcional):</strong> "Hoje vocês possuem algum custo anual com sistemas legados ou ferramentas que seriam descontinuadas com a nossa solução? (Ex: software de transcrição antigo, custo de storage, etc.)"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Para o Investimento Xertica:</strong>
+                             <ul class="mt-2">
+                                <li>"Para a simulação, vamos usar o valor da proposta. O valor de Propriedade Intelectual (licença) é R$ [X]. Vamos adicionar os custos de Serviços/Implementação e Consumo GCP, ou prefere analisar separadamente?"</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="my-6 p-4 rounded-xl content-box content-box-highlight-blue">
+                        <h4 class="text-lg font-bold mb-2">Plano B (Se o cliente não souber o custo):</h4>
+                        <p>Use uma estimativa de mercado (Ex: R$ 5.000/mês para um analista júnior) e deixe isso explícito: "Estou usando um valor de R$ 5.000 como base, apenas para a simulação. Se o valor real for maior, o ROI será ainda mais expressivo."</p>
+                    </div>
+                </section>
+
+                <!-- Seção 7 -->
+                <section id="secao7">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">7. Análise Crítica dos Resultados (Cenários)</span>
+                    </h2>
+                    <p class="mb-6 font-bold text-center text-lg md:text-xl">NÃO SEJA UM ROBÔ! A calculadora gera números, você gera *insights*.</p>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Cenário 1: O Cliente contesta seus Tempos Manuais</h3>
+                    <ul>
+                        <li><strong>A Objeção:</strong> "Impossível, meu time não leva 12 minutos por página, leva só 5."</li>
+                        <li><strong>Sua Ação (O Superpoder):</strong> "Ótimo! Vamos usar os seus 5 minutos."</li>
+                        <li>Abra a seção "Premissas de Cálculo", mude o valor de <code>12</code> para <code>5</code> no campo "Manual" e recalcule na hora. Isso gera confiança imediata e mostra que você não está "inflando" os números.</li>
+                    </ul>
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Cenário 2: O ROI parece baixo ou o Payback é muito longo (> 18 meses)</h3>
+                    <ul>
+                        <li><strong>A Causa:</strong> Geralmente, o volume de tarefas é baixo ou o investimento é alto em comparação com o custo do colaborador.</li>
+                        <li><strong>Sua Ação:</strong> Mude o foco do ROI para o "Custo da Inação" e "Benefícios Qualitativos".</li>
+                        <li><strong>(Script):</strong> "O retorno puramente financeiro se paga em 20 meses. Mas o ponto principal aqui é que, hoje, sua equipe gasta [X mil] horas em tarefas manuais. Com a IA, essas horas (que equivalem a [N] profissionais) são liberadas para [Atividade Estratégica que gera receita/valor], algo que o ROI financeiro não captura."</li>
+                    </ul>
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Cenário 3: O ROI parece "Bom Demais" (ex: 1500%)</h3>
+                    <ul>
+                        <li><strong>A Causa:</strong> O custo do colaborador é muito alto, ou o volume de tarefas é massivo.</li>
+                        <li><strong>Sua Ação:</strong> Valide os números e seja conservador.</li>
+                        <li><strong>(Script):</strong> "Os números são expressivos, certo? Isso acontece porque o volume de [Tarefa X] é muito alto. Mesmo que fôssemos ultra-conservadores e cortássemos essa economia pela metade, ainda teríamos um ROI de 750%..."</li>
+                    </ul>
+                </section>
+
+                <!-- Seção 8 -->
+                <section id="secao8">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">8. Apresentando os Resultados (A Narrativa de Valor)</span>
+                    </h2>
+                    <p class="mb-6">O relatório PNG é a sua prova. Use-o para contar esta história:</p>
+                    <ol>
+                        <li><strong>O Custo da Inação (O Problema):</strong> "Hoje, o custo operacional para manter essas tarefas manuais (somando o tempo da equipe e a infra atual) é de <strong>R$ [Custo Operacional Atual]</strong> por ano."</li>
+                        <li><strong>A Economia Bruta (O Ganho):</strong> "Com a IA, sua economia de mão de obra (horas) e infraestrutura é de <strong>R$ [Economia Bruta Total]</strong> por ano."</li>
+                        <li><strong>O Investimento (A Solução):</strong> "Para isso, o investimento total na solução Xertica é de <strong>R$ [Investimento Total]</strong>."</li>
+                        <li><strong>O Lucro (O Resultado Líquido):</strong> "Isso significa que, já no primeiro ano, você tem uma Economia Líquida (lucro) de <strong>R$ [Economia Líquida]</strong>."</li>
+                        <li><strong>A Justificativa (ROI & Payback):</strong> "É um investimento que gera <strong>[X]% de ROI</strong> e se paga em apenas <strong>[Z] meses</strong>."</li>
+                    </ol>
+                </section>
+
+                <!-- Seção 9 -->
+                <section id="secao9">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">9. Disclaimers: Transparência Gera Confiança</span>
+                    </h2>
+                    <p class="mb-4">Use os disclaimers a seu favor. Seja o primeiro a dizer:</p>
+                    <p class="mb-4 italic">"Estes números são uma simulação robusta, baseada nas premissas que validamos juntos (Custo de R$ [X] por colaborador e [Y] páginas/mês). O valor real pode variar, mas isso nos dá uma ordem de grandeza clara do potencial de retorno."</p>
+                </section>
+                
+                <!-- SEÇÃO 10 ATUALIZADA (SALESFORCE) -->
+                <section id="secao10">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">10. Processo Interno: Registro no Salesforce é OBRIGATÓRIO!</span>
+                    </h2>
+                    
+                    <div class="my-6 p-4 rounded-xl content-box content-box-highlight-red">
+                        <h4 class="text-lg font-bold mb-2">REGRA INDISPENSÁVEL (Informação de: 13/11/2025)</h4>
+                        <p>Para garantir a rastreabilidade e o sucesso da oportunidade, o uso das calculadoras DEVE ser registrado no Salesforce. O processo é simples e obrigatório:</p>
+                    </div>
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Passo a Passo (Dentro da Oportunidade):</h3>
+                    <ol>
+                        <li>Acesse a Oportunidade do cliente e clique em <strong>"Detalhes"</strong>.</li>
+                        <li>Na seção <strong>"Opportunity Information"</strong>, flegue (marque) os campos correspondentes à(s) calculadora(s) que você utilizou:
+                            <ul class="mt-2">
+                                <li><code>Calculadora Horas</code> (Se usou a de Economia de Horas)</li>
+                                <li><code>Calculadora ROI</code> (Se usou a de ROI Financeiro)</li>
+                            </ul>
+                        </li>
+                        <li>Na seção <strong>"Arquivos"</strong> (Files), faça o upload de TODOS os relatórios (arquivos .PNG) que você gerou e apresentou ao cliente.</li>
+                        <li>Clique em <strong>"Salvar"</strong> na Oportunidade.</li>
+                    </ol>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Por quê?</h3>
+                    <ul>
+                        <li><strong>Visibilidade e Acompanhamento:</strong> Permite à gestão ver que a ferramenta está sendo usada.</li>
+                        <li><strong>Histórico da Oportunidade:</strong> Registra o valor quantificado que foi discutido.</li>
+                        <li><strong>Melhoria Contínua:</strong> Ajuda a entendermos quais argumentos (e quais calculadoras) estão funcionando para fechar negócios.</li>
+                    </ul>
+                </section>
+
+                <!-- Seção 11 -->
+                <section id="secao11">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t" style="border-color: var(--stroke);">
+                        <span class="gradient-text">11. Links e Suporte</span>
+                    </h2>
+                    <ul>
+                        <li><strong>Central de Calculadoras:</strong> <a href="https://xerticaai.github.io/calculadora-hub/" target="_blank">https://xerticaai.github.io/calculadora-hub/</a></li>
+                        <li><strong>Premissas Detalhadas:</strong> Dentro de cada calculadora, clique em "VER REGRAS DE CÁLCULO".</li>
+                        <li><strong>Dúvidas?</strong> Contate o time de Marketing ou Sales Enablement.</li>
+                    </ul>
+                    <p class="mt-8 text-center font-bold text-lg">Lembre-se: As calculadoras são um meio, não um fim. Use-as com inteligência, análise crítica e foco no cliente para transformar números em negócios fechados!</p>
+                </section>
+
+            </article>
             
-            <!-- Seção 4 --><section id="secao4">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">4. Foco Estratégico: Jobs To Be Done (JTBD) - A Dor do Cliente</h2>
-                <div class="my-6 p-4 rounded-xl border-l-4 border-blue-500 bg-white shadow-md">
-                    <h4 class="text-lg font-bold mb-2 font-mono">Ponto Crucial</h4>
-                    <p class="text-gray-700">As calculadoras NÃO são sobre vender um produto específico da Xertica.ai (como "nosso transcritor" ou "nosso gerador de documentos"). Elas são focadas nas TAREFAS que o cliente precisa realizar e nas DORES associadas a essas tarefas quando feitas manualmente.</p>
-                </div>
+        </div> <!-- << FIM DO CONTAINER GRID -->
+    </main>
 
-                <!-- Tabela --><div class="shadow-lg rounded-xl overflow-hidden my-8 border border-gray-200">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="p-4 text-sm font-bold uppercase tracking-wider">Em vez de perguntar (Foco no Produto):</th>
-                                    <th class="p-4 text-sm font-bold uppercase tracking-wider">Pergunte (Foco na Tarefa/Dor - JTBD):</th>
-                                    <th class="p-4 text-sm font-bold uppercase tracking-wider">Por quê?</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="p-4 align-top">"Você quer um assistente virtual?"</td>
-                                    <td class="p-4 align-top">"Qual o volume mensal de atendimentos para agendamentos e dúvidas que sua equipe realiza?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Foca no problema (volume de interações manuais) antes de apresentar a solução (nosso assistente).</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 align-top">"Você precisa analisar contratos com IA?"</td>
-                                    <td class="p-4 align-top">"Quantos documentos (contratos, editais, etc.) precisam ser analisados para extração de dados?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Quantifica a carga de trabalho manual de leitura e extração, abrindo espaço para a IA como otimizadora.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 align-top">"Interessa um gerador de autos/licenças?"</td>
-                                    <td class="p-4 align-top">"Qual a média de documentos (licenças, autos, ofícios) que precisam ser gerados por mês?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Aborda a tarefa repetitiva de "gerar" documentos padronizados, onde a IA pode rascunhar automaticamente.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 align-top">"Nossa IA pode anonimizar seus dados."</td>
-                                    <td class="p-4 align-top">"Quantos documentos precisam ser anonimizados mensalmente para LGPD ou pesquisa?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Foca na necessidade de conformidade e segurança (a tarefa manual de "tarjar"), antes de oferecer a automação.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 align-top">"Quer transcrever vídeos automaticamente?"</td>
-                                    <td class="p-4 align-top">"Quantas horas de vídeo precisam ser transcritas por mês?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Quantifica a demanda pela tarefa manual (ouvir e digitar), tornando o ganho de tempo da IA óbvio.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 align-top">"Nossa IA elabora peças jurídicas."</td>
-                                    <td class="p-4 align-top">"Qual o volume de peças jurídicas (petições, despachos) que sua equipe elabora mensalmente?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Foca no esforço de redação e pesquisa, onde a IA pode auxiliar na composição e busca de informações.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 align-top">"Temos um buscador de jurisprudência."</td>
-                                    <td class="p-4 align-top">"Quantas pesquisas de jurisprudência são realizadas em média por mês?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Aborda o tempo gasto na busca manual em diversas bases, antes de mostrar como a IA pode consolidar e acelerar essa busca.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 align-top">"Precisa de ajuda com notas clínicas?"</td>
-                                    <td class="p-4 align-top">"Qual a quantidade de consultas/exames que exigem atualização manual do prontuário por mês?"</td>
-                                    <td class="p-4 align-top text-sm text-gray-700">Foca no tempo gasto pelo profissional de saúde documentando a consulta, antes de oferecer a transcrição/resumo automático por IA.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <p>Abordar primeiro a tarefa e o volume torna a conversa mais estratégica. Você entende a dimensão do problema antes de apresentar a solução. A calculadora, então, se torna a ferramenta que quantifica o custo desse problema e o benefício financeiro/operacional de resolvê-lo com a nossa IA.</p>
-            </section>
+    <!-- FOOTER ATUALIZADO (Dark mode) -->
+    <footer class="py-4 text-center text-sm text-slate-500 mt-auto" style="border-top: 1px solid var(--stroke);">
+        <p>© 2024 Xertica.ai. Todos os direitos reservados.</p>
+    </footer>
 
-            <!-- Seção 5 --><section id="secao5">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">5. Como a Mágica Acontece? A Lógica por Trás dos Números</h2>
-                <p class="mb-6">As calculadoras não usam números aleatórios. Elas se baseiam em premissas internas e cálculos padronizados para garantir consistência e realismo.</p>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">5.1. Premissas Internas (Tempo Manual vs. Tempo com IA)</h3>
-                <p class="mb-4">Para cada tarefa (JTBD) em cada calculadora, usamos tempos médios estimados, baseados em benchmarks de mercado, estudos de caso (como o do MPRS para transcrição) e nossa experiência.</p>
-                <p class="mb-4"><strong>IMPORTANTE:</strong> Essas premissas estão detalhadas na própria calculadora, na seção expansível "Entenda o Cálculo" ou "Ver Regras de Cálculo". Consulte-as sempre!</p>
-                <p class="mb-4"><strong>Exemplos das Premissas Atuais (Outubro/2025 - CONFIRA NA CALCULADORA):</strong></p>
+    <!-- Script para o menu mobile (se houver) -->
+    <script>
+        // Script para o menu mobile "pegajoso" (sticky)
+        document.addEventListener('DOMContentLoaded', () => {
+            const navMobile = document.getElementById('manual-nav-mobile');
+            if (navMobile) {
+                const navOffsetTop = navMobile.offsetTop;
                 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
-                        <h4 class="font-bold font-mono mb-2 text-lg">Justiça (Horas e ROI):</h4>
-                        <ul>
-                            <li><strong>Transcrição (1h vídeo):</strong> Manual 240 min vs. IA 6 min</li>
-                            <li><strong>Elaboração de Peças:</strong> Manual 120 min vs. IA 5 min</li>
-                            <li><strong>Pesquisa de Jurisprudência:</strong> Manual 60 min vs. IA 3 min</li>
-                            <li><strong>Atendimento ao Cidadão:</strong> Manual 15 min vs. IA 0 min</li>
-                        </ul>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
-                        <h4 class="font-bold font-mono mb-2 text-lg">Governo (Horas e ROI):</h4>
-                        <ul>
-                            <li><strong>Atendimento ao Cidadão:</strong> Manual 15 min vs. IA 0 min</li>
-                            <li><strong>Análise de Documentos:</strong> Manual 60 min vs. IA 6 min</li>
-                            <li><strong>Geração de Documentos:</strong> Manual 45 min vs. IA 4 min</li>
-                            <li><strong>Anonimização de Documentos:</strong> Manual 20 min vs. IA 1 min</li>
-                        </ul>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
-                        <h4 class="font-bold font-mono mb-2 text-lg">Saúde (Horas e ROI):</h4>
-                        <ul>
-                            <li><strong>Atendimento ao Paciente:</strong> Manual 10 min vs. IA 0 min</li>
-                            <li><strong>Atualização do Prontuário:</strong> Manual 15 min vs. IA 3 min</li>
-                            <li><strong>Anonimização de Documentos:</strong> Manual 20 min vs. IA 1 min</li>
-                        </ul>
-                    </div>
-                </div>
+                const observer = new IntersectionObserver(
+                    ([e]) => {
+                        if (!e.isIntersecting || e.intersectionRatio < 1) {
+                            navMobile.classList.add('is-sticky');
+                        } else {
+                            navMobile.classList.remove('is-sticky');
+                        }
+                    },
+                    { threshold: [1] } 
+                );
 
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-8">5.2. Cálculo de Horas (Comum a Todas)</h3>
-                <ul class="font-mono bg-gray-50 p-4 rounded-lg text-sm text-gray-800 uppercase">
-                    <li><strong>Tempo Manual Total (Mês):</strong> Volume Tarefa 1 * Tempo Manual 1 + ... (min)</li>
-                    <li><strong>Tempo com IA Total (Mês):</strong> Volume Tarefa 1 * Tempo IA 1 + ... (min)</li>
-                    <li><strong>Minutos Economizados (Mês):</strong> Tempo Manual Total - Tempo com IA Total</li>
-                    <li><strong>Horas Economizadas (Mês):</strong> Minutos Economizados / 60</li>
-                    <li><strong>Horas Economizadas (Ano):</strong> Horas Economizadas (Mês) * 12</li>
-                    <li><strong>Servidores Equivalentes:</strong> Horas Economizadas (Mês) / 168</li>
-                    <li><strong>Redução % Tempo:</strong> (1 - (Tempo IA Total / Tempo Manual Total)) * 100</li>
-                    <li><strong>Nova Capacidade:</strong> (Volume Atual * Tempo Manual) / Tempo IA</li>
-                </ul>
+                const trigger = document.createElement('div');
+                trigger.style.height = '1px';
+                trigger.style.position = 'absolute';
+                trigger.style.top = (navOffsetTop - 1) + 'px';
+                if(document.body) { // Garante que o body exista
+                    document.body.appendChild(trigger);
+                }
+            }
+        });
+    </script>
 
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-8">5.3. Conversão para Dinheiro (Apenas Calculadora de ROI)</h3>
-                <ul class="font-mono bg-gray-50 p-4 rounded-lg text-sm text-gray-800 uppercase">
-                    <li><strong>Custo da Hora:</strong> Custo Mensal Colaborador / 168</li>
-                    <li><strong>Economia Bruta Mensal (R$):</strong> Horas Economizadas (Mês) * Custo da Hora</li>
-                    <li><strong>Economia Bruta Anual (R$):</strong> Economia Bruta Mensal * 12</li>
-                    <li><strong>Economia Líquida Anual (R$):</strong> Economia Bruta Anual - Investimento em IA</li>
-                    <li><strong>Economia Líquida Mensal (R$):</strong> Economia Líquida Anual / 12</li>
-                    <li><strong>ROI (%):</strong> (Economia Líquida Anual / Investimento em IA) * 100</li>
-                    <li><strong>Payback (Meses):</strong> Investimento em IA / Economia Bruta Mensal</li>
-                    <li><strong>Custo Operacional Atual (R$):</strong> (Tempo Manual Total (Mês) / 60) * Custo da Hora * 12</li>
-                    <li><strong>Novo Custo Operacional (R$):</strong> Custo Atual - Economia Bruta Anual + Investimento IA</li>
-                </ul>
-                <p class="mt-4">Entender essa lógica é fundamental para você explicar os resultados ao cliente com confiança.</p>
-
-            </section>
-
-            <!-- Seção 6 --><section id="secao6">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">6. Descobrindo os Dados Essenciais: Perguntas Chave</h2>
-                <p class="mb-6">Para que as calculadoras funcionem, você precisa coletar alguns dados do cliente. Seja direto quando possível, mas tenha perguntas exploratórias na manga se o cliente não tiver os números exatos.</p>
-                
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Dados Necessários (Principalmente para Calculadora de ROI):</h3>
-                <ul>
-                    <li><strong>Custo Mensal por Colaborador (R$):</strong> Incluir salário + encargos. É crucial para converter horas em dinheiro.</li>
-                    <li><strong>Quantidade de Colaboradores:</strong> Focado nos que executam as tarefas mapeadas.</li>
-                    <li><strong>Valor do Investimento em IA (Anual):</strong> O valor da sua proposta ou uma estimativa.</li>
-                    <li><strong>Volume Mensal de Tarefas:</strong> Quantidade de cada JTBD (Ex: nº de atendimentos).</li>
-                </ul>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Perguntas Diretas (O Ideal):</h3>
-                <ul>
-                    <li>"Para termos uma ideia do impacto financeiro, qual é o custo médio mensal, incluindo encargos, de um colaborador que realiza principalmente essas tarefas [listar]?"</li>
-                    <li>"Quantos colaboradores na sua equipe dedicam a maior parte do tempo a essas atividades?"</li>
-                    <li>"Com base na nossa conversa, um investimento anual estimado para essa solução seria em torno de R$ [valor]. Podemos usar esse número para a simulação de ROI?"</li>
-                    <li>"Vocês têm uma estimativa do volume mensal de [Tarefa 1], [Tarefa 2], etc., que a equipe realiza?"</li>
-                </ul>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Perguntas Exploratórias (Se o cliente não souber):</h3>
-                <ul>
-                    <li><strong>Para estimar o Custo/Hora:</strong>
-                        <ul class="mt-2">
-                            <li>"Qual a faixa salarial média ou o cargo predominante das pessoas que executam [Tarefa X]?"</li>
-                            <li>Último caso: Use uma média de mercado para o cargo/setor, mas informe ao cliente.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Para estimar o Volume de Tarefas:</strong>
-                        <ul class="mt-2">
-                            <li>"Em um dia/semana normal, quantas [Tarefa X] uma pessoa costuma realizar?"</li>
-                            <li>"Existe algum backlog ou fila de espera para [Tarefa X]? Qual o tamanho?"</li>
-                        </ul>
-                    </li>
-                    <li><strong>Para validar a Dor:</strong>
-                        <ul class="mt-2">
-                            <li>"Quanto tempo, em média, vocês estimam que leva para completar [Tarefa X] manualmente hoje?"</li>
-                            <li>"Quais são os maiores gargalos ou fontes de frustração da equipe ao realizar [Tarefa X]?"</li>
-                        </ul>
-                    </li>
-                </ul>
-                <p class="mt-4"><strong>Dica:</strong> Conduza essa coleta de dados de forma consultiva. Não é um interrogatório. Explique por que você precisa dos números ("Para podermos simular o ganho real na sua operação...").</p>
-            </section>
-
-            <!-- Seção 7 --><section id="secao7">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">7. Análise Crítica dos Resultados: VOCÊ é o Consultor!</h2>
-                <p class="mb-6 font-bold uppercase text-center text-lg md:text-xl font-mono">NUNCA APENAS GERE E ENVIE O RELATÓRIO PNG!</p>
-                <p class="mb-4">A calculadora é uma ferramenta, mas a sua análise e interpretação são o diferencial. Antes de apresentar ou enviar:</p>
-                
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Os Números Fazem Sentido?</h3>
-                <ul>
-                    <li><strong>Realismo:</strong> Os resultados (ROI, payback) parecem realistas? Um ROI de 5000% pode gerar desconfiança. Um payback de 60 meses pode desanimar.</li>
-                    <li><strong>Coerência:</strong> Os dados de entrada fornecidos pelo cliente parecem corretos?</li>
-                </ul>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Ajuste as Premissas (Se Necessário e COM TRANSPARÊNCIA):</h3>
-                <ul>
-                    <li>Se você usou estimativas (ex: custo médio), informe isso ao cliente.</li>
-                    <li>Se os tempos manuais do cliente forem drasticamente diferentes das nossas premissas, converse sobre isso. As premissas online NÃO são editáveis, mas você pode explicar a diferença.</li>
-                    <li>NÃO altere o "Investimento em IA" para forçar um ROI positivo.</li>
-                </ul>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Prepare seus Argumentos (Antecipe Perguntas):</h3>
-                <ul>
-                    <li><strong>Payback > 12 meses?</strong> A calculadora de ROI te dará um alerta amarelo. Não ignore! Prepare o discurso: "O investimento se paga em [Z] meses. No entanto, observe que o ROI de [X]% já representa o retorno líquido obtido logo no primeiro ano..."</li>
-                    <li><strong>ROI parece baixo?</strong> Reforce a economia bruta anual, o ganho de capacidade, e os benefícios qualitativos.</li>
-                    <li><strong>Cliente questiona os tempos da IA?</strong> Tenha cases de sucesso (como MPRS) ou demos para comprovar.</li>
-                </ul>
-                <p class="mt-4">Lembre-se: Você não é um operador de calculadora, é um consultor de negócios usando dados para provar valor.</p>
-            </section>
-
-            <!-- Seção 8 --><section id="secao8">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">8. Apresentando os Resultados com Impacto</h2>
-                <p class="mb-6">O relatório PNG gerado é a sua prova visual do valor. Use-o estrategicamente para:</p>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Mostrar o Custo da Inação:</h3>
-                <p class="mb-4 italic">"Olha, [Nome do Cliente], com base nos volumes que conversamos, estimamos que hoje essas tarefas consomem cerca de [X mil] horas por ano da sua equipe. Isso representa um custo operacional anual de aproximadamente R$ [Y mil]..."</p>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Destacar o Ganho de Capacidade (Calculadora de Horas):</h3>
-                <p class="mb-4 italic">"Com o tempo que a IA libera, a capacidade da equipe para [Tarefa X] poderia aumentar em [N] vezes..."</p>
-                <p class="mb-4 italic">"Essas [Y mil] horas anuais que a IA libera equivalem a [N] servidores que podem ser realocados de tarefas repetitivas para [objetivo estratégico]..."</p>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Reforçar a Proposta Financeira (Calculadora de ROI):</h3>
-                <p class="mb-4 italic">"O investimento na solução, estimado em R$ [Investimento], gera uma economia bruta anual de R$ [Economia Bruta]..."</p>
-                <p class="mb-4 italic">"Isso significa que o investimento se paga em apenas [Z] meses (Payback)."</p>
-                <p class="mb-4 italic">"Já no primeiro ano, mesmo após o pagamento, vocês terão uma economia líquida de R$ [Economia Líquida], resultando em um ROI de [X]%."</p>
-
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Dicas de Apresentação:</h3>
-                <ul>
-                    <li><strong>Seja Visual:</strong> Mostre o PNG na tela.</li>
-                    <li><strong>Conecte com a Dor:</strong> Sempre relacione os números (horas, R$) de volta aos problemas que o cliente mencionou.</li>
-                    <li><strong>Foque no Benefício:</strong> Use a calculadora para falar sobre os resultados que o cliente terá.</li>
-                    <li><strong>Valide os Números:</strong> Pergunte: "Esses números fazem sentido com a sua percepção da operação?".</li>
-                </ul>
-            </section>
-
-            <!-- Seção 9 --><section id="secao9">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">9. Os Disclaimers: Transparência Gera Confiança</h2>
-                <p class="mb-4">Os avisos legais (disclaimers) no final de cada relatório PNG e na calculadora são importantes:</p>
-                <ul>
-                    <li><strong>Estimativa, Não Garantia:</strong> Reforce que a calculadora trabalha com médias e estimativas. O objetivo é mostrar o potencial e a ordem de grandeza do benefício. Alinhe essa expectativa.</li>
-                    <li><strong>Não Inclui Custo de Infraestrutura (Principalmente ROI):</strong> O cálculo de ROI foca na comparação Custo Humano vs. (Custo Humano Reduzido + Custo IA). Ele não inclui potenciais custos de nuvem (se aplicável) ou outros fatores externos.</li>
-                </ul>
-                <p class="mt-4">Use os disclaimers a seu favor. Mencioná-los demonstra honestidade e realismo. "Esta é uma simulação robusta baseada em dados e benchmarks, projetada para dar uma visão clara do potencial de retorno..."</p>
-            </section>
-            
-            <!-- Seção 10 --><section id="secao10">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">10. Processo Interno: Anexar no Salesforce é OBRIGATÓRIO!</h2>
-                <div class="my-6 p-4 rounded-xl border-l-4 border-red-500 bg-white shadow-md">
-                    <h4 class="text-lg font-bold mb-2 font-mono">REGRA INDISPENSÁVEL</h4>
-                    <p class="text-gray-700">TODO relatório gerado (o arquivo .PNG, tanto de Horas quanto de ROI) DEVE ser anexado à respectiva Oportunidade no Salesforce.</p>
-                </div>
-                <h3 class="text-xl md:text-2xl font-bold mb-4 mt-6">Por quê?</h3>
-                <ul>
-                    <li><strong>Visibilidade e Acompanhamento:</strong> Permite à gestão e outros times verem que a ferramenta está sendo usada.</li>
-                    <li><strong>Histórico da Oportunidade:</strong> Registra o valor quantificado que foi discutido.</li>
-                    <li><strong>Alinhamento Interno:</strong> Garante que todos tenham acesso à mesma análise de valor.</li>
-                    <li><strong>Melhoria Contínua:</strong> Ajuda a entendermos quais argumentos estão funcionando.</li>
-                </ul>
-                <p class="mt-4"><strong>Como Anexar:</strong> Na Oportunidade, vá até a seção "Arquivos" ou "Notas e Anexos" e faça o upload do PNG com um nome claro (Ex: Relatorio_ROI_TJSP_Out2025.png).</p>
-            </section>
-
-            <!-- Seção 11 --><section id="secao11">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 pt-12 mt-12 border-t border-gray-200 gradient-text">11. Onde Encontrar as Calculadoras e Suporte</h2>
-                <ul>
-                    <li><strong>Localização:</strong> Os links diretos estão na <a href="home_calculadoras.html">Central de Calculadoras</a> e/ou na sua Planilha de Playbook Comercial.</li>
-                    <li><strong>Este Manual:</strong> Guarde o link ou o arquivo deste manual para referência rápida.</li>
-                    <li><strong>Premissas Detalhadas:</strong> Dentro de cada calculadora, clique em "Entenda o Cálculo" ou "Ver Regras de Cálculo".</li>
-                    <li><strong>Dúvidas?</strong> Contate o time de Marketing ou Sales Enablement.</li>
-                </ul>
-                <p class="mt-8 text-center font-bold text-lg">Lembre-se: As calculadoras são um meio, não um fim. Use-as com inteligência, análise crítica e foco no cliente para transformar números em negócios fechados!</p>
-            </section>
-
-        </article>
-        
-        </div> <!-- << FIM DO CONTAINER GRID --></main>
-
-    <footer class="py-4 text-center text-sm text-gray-600 mt-auto border-t border-gray-200/80">
-
+</body>
+</html>
